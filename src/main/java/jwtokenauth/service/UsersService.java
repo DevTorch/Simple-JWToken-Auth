@@ -4,16 +4,16 @@ import jwtokenauth.entity.Role;
 import jwtokenauth.entity.UserEntity;
 import jwtokenauth.repository.UsersRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Service
-public class UsesService {
+public class UsersService {
     private final UsersRepository usersRepository;
 
-    public UsesService(UsersRepository usersRepository) {
+    public UsersService(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;
     }
 
@@ -43,6 +43,7 @@ public class UsesService {
     }
 
     /** DEMO MODE */
+    @GetMapping("/get-admin")
     public void getAdmin() {
         var user = getCurrentUser();
         user.setRole(Role.ROLE_ADMIN);
